@@ -55,3 +55,23 @@ print(head(transformed[, 1:5]))
 
 
 ##### Filtering
+
+## filter near-zero variance predictors
+nearZeroVar(segData)
+# for the cell segmentation data, there are no problematic predictors
+# When predictors should be removed, a vector of integers is
+# returned that indicates which columns should be removed.
+
+correlations <- cor(segData)
+dimension <- dim(correlations)
+print(dimension)
+print(correlations[1:4, 1:4])
+
+# library(corrplot)
+# corrplot(correlations, order= 'hclust')
+
+highCorr <- findCorrelation(correlations, cutoff=.75)
+filterSize <- length(highCorr)
+print(filterSize)
+print(head(highCorr))
+filteredSegData <- segData[, -highCorr]
