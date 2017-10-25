@@ -67,8 +67,8 @@ dimension <- dim(correlations)
 print(dimension)
 print(correlations[1:4, 1:4])
 
-# library(corrplot)
-# corrplot(correlations, order= 'hclust')
+library(corrplot)
+corrplot(correlations, order= 'hclust')
 
 highCorr <- findCorrelation(correlations, cutoff=.75)
 filterSize <- length(highCorr)

@@ -3,4 +3,19 @@
 library(mlbench)
 data(Glass)
 str(Glass)
+hist(Glass$RI)
+hist(Glass$Na)
 
+library(e1071)
+skewness(Glass$RI)
+skewness(Glass$Mg)
+
+correlations <- cor(Glass[, 1:9])
+library(corrplot)
+corrplot(correlations, order='hclust')
+
+library(caret)
+hist(Glass$Ca)
+CaTrans <- BoxCoxTrans(Glass$Ca)
+result <- predict(CaTrans, Glass$Ca)
+hist(result)
