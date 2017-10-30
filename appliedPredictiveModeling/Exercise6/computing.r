@@ -82,3 +82,9 @@ print(ridgeRegFit)
 
 # The lars package contains the lars function, the elasticnet package has enet,
 # and the glmnet package has a function of the same name
+
+enetModel <- enet(x = as.maxtrix(solTRainXtrans), y = solTrainY, lambda=0.01, normalize=TRUE)
+enetPred <- predict(enetModel, newX=as.matrix(solTestXtrans), s = 1., mode="faction", type="fit")
+print(names(enetPred))
+print(enetPred$fit)
+
